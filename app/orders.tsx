@@ -1,16 +1,23 @@
 import { router } from 'expo-router';
-import { Button, Text, View } from 'react-native';
+import { Button, FlatList, Text, View } from 'react-native';
 import SearchBar from '../components/SearchBar';
 
-export default function Orders() {
-  return ( 
-  
+const Orders = () => {
+return (
 <View>
-
-< SearchBar/>
-<Text>HamBurger</Text>
-<Text>CheeseBurger</Text>
-<Text>Fries</Text>
-<Button title="Back" onPress={() => router.back()} />
+<SearchBar />
+<FlatList
+data={[
+    { id: '1', name: 'HamBurger' },
+    { id: '2', name: 'CheeseBurger' },
+    { id: '3', name: 'Fries' }
+ ]}
+renderItem={({ item }) => <Text>{item.name}</Text>}
+keyExtractor={item => item.id}
+/>
+ <Button title="Go Back" onPress={() => router.back()} />
 </View>
-);}
+ );
+};
+
+export default Orders;
